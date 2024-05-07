@@ -77,5 +77,27 @@ namespace LoginDemoServer.Controllers
         }
 
 
+        [HttpGet("getusergrades")]
+        public IActionResult GetUserGrades([FromQuery] DTO.LoginInfo loginDto)
+        {
+            try
+            {
+                string userEmail = HttpContext.Session.GetString("loggedInUser");
+
+                if (string.IsNullOrEmpty(userEmail))
+                {
+                    return Unauthorized("User is not logged in");
+                }
+
+                ICollection<Grade>userGrade= (ICollection<Grade>)context.GetUserGrades(userEmail);
+                return Ok(userGrade);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
     }
 }

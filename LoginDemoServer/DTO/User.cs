@@ -8,6 +8,7 @@ namespace LoginDemoServer.DTO
         public string? PhoneNumber { get; set; }
         public DateTime? BirthDate { get; set; }
         public string Name { get; set; }
+        //public ICollection<Grade> Grades { get; set; }
 
         public Models.User ToModelsUser()
         {
@@ -22,6 +23,7 @@ namespace LoginDemoServer.DTO
             this.Email = modelUser.Email;
             this.Password = modelUser.Password;
             this.BirthDate = modelUser.BirthDate;
+           // this.Grades=modelUser.Grades;
         }
     }
 }
